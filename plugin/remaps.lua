@@ -7,3 +7,5 @@ vim.keymap.set("n", "<leader>k", "<C-w>k")
 vim.keymap.set("n", "<leader>j", "<C-w>j")
 vim.keymap.set("n", "<leader>l", "<C-w>l")
 vim.keymap.set("n", "<leader>g", ":G<CR>")
+
+vim.keymap.set("n", "<C-l>", ":LspRestart<CR>")

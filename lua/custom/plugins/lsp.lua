@@ -40,6 +40,7 @@ return {
 				svelte = true,
 				templ = true,
 				cssls = true,
+				basedpyright = true,
 				tsserver = true,
 				phpactor = {
 					filetypes = { "php", "blade" },
@@ -109,6 +110,30 @@ return {
 				lua = true,
 			}
 
+			lspconfig["basedpyright"].setup({
+				capabilities = capabilities,
+				settings = {
+					basedpyright = {
+						typeCheckingMode = "standard",
+						disableOrganizeImports = true, -- ruff handles
+					},
+					python = {
+						analysis = {
+							ignoree = { "*" }, -- ruff handles analysis
+						},
+					},
+				},
+			})
+			lspconfig.ruff.setup({
+				trace = "messages",
+				init_options = {
+					settings = {
+						logLevel = "info",
+						-- lsp settings
+					},
+				},
+			})
+
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(args)
 					local bufnr = args.buf
@@ -131,6 +156,21 @@ return {
 						client.server_capabilities.semanticTokensProvider = nil
 					end
 				end,
+			})
+
+			vim.api.nvim_create_autocmd("LspAttach", {
+				group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
+				callback = function(args)
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					if client == nil then
+						return
+					end
+					if client.name == "ruff" then
+						-- Disable hover in favor of Pyright
+						client.server_capabilities.hoverProvider = false
+					end
+				end,
+				desc = "LSP: Disable hover capability from Ruff",
 			})
 
 			-- Autoformatting Setup

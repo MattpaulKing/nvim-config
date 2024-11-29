@@ -61,3 +61,39 @@ return {
 		end,
 	},
 }
+-- return {
+-- 	{
+-- 		"catppuccin/nvim",
+-- 		name = "catppuccin",
+-- 		priority = 1000,
+-- 		dependencies = {
+-- 			{ "nvim-lualine/lualine.nvim" },
+-- 			{ "nvim-tree/nvim-web-devicons" },
+-- 		},
+-- 		config = function()
+-- 			require("catppuccin").setup({
+-- 				flavour = "macchiato",
+-- 				transparent_background = true,
+-- 				default_integrations = true,
+-- 				integrations = {
+-- 					cmp = true,
+-- 					gitsigns = true,
+-- 					nvimtree = true,
+-- 					treesitter = true,
+-- 					notify = false,
+-- 					harpoon = true,
+-- 					mini = {
+-- 						enabled = true,
+-- 						indentscope_color = "",
+-- 					},
+-- 					-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+-- 				},
+-- 			})
+-- 			require("lualine").setup({
+-- 				options = {
+-- 					theme = "catppuccin",
+-- 				},
+-- 			})
+-- 		end,
+-- 	},
+-- }
