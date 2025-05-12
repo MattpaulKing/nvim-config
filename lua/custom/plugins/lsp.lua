@@ -34,14 +34,13 @@ return {
 
 			local servers = {
 				bashls = true,
-				gopls = true,
 				lua_ls = true,
 				rust_analyzer = true,
 				svelte = true,
 				templ = true,
 				cssls = true,
 				basedpyright = true,
-				tsserver = true,
+				ts_ls = true,
 				phpactor = {
 					filetypes = { "php", "blade" },
 					settings = {
@@ -89,7 +88,6 @@ return {
 			local ensure_installed = {
 				"stylua",
 				"lua_ls",
-				"delve",
 			}
 
 			vim.list_extend(ensure_installed, servers_to_install)
